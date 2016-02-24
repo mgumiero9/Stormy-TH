@@ -1,8 +1,12 @@
 package com.androiders.stormy;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String apiKey = "c0d6b355edd1c82fdc625e9b2392ee21";
-        double latitude =  9999; //37.8267;
+        double latitude =  37.8267;
         double longitude = -122.423;
 
         String forecastUrl = "https://api.forecast.io/forecast/" + apiKey + "/"
@@ -53,12 +57,22 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+        } else {
+            Toast.makeText(MainActivity.this, R.string.network_unavailable_message,
+                    Toast.LENGTH_LONG).show();
         }
         Log.d(TAG, "Main UI code is running");
     }
 
     private boolean isNetworkAvailable() {
-        return false;
+        ConnectivityManager manager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        boolean isAvailable = false;
+        if (networkInfo != null && networkInfo.isConnected()) {
+            isAvailable = true;
+        }
+        return isAvailable;
     }
 
     private void alertUserAboutError() {
@@ -66,3 +80,29 @@ public class MainActivity extends AppCompatActivity {
         dialog.show(getFragmentManager(), "error_dialog");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

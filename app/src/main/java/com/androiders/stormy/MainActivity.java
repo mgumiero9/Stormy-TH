@@ -27,34 +27,40 @@ public class MainActivity extends AppCompatActivity {
 
         String forecastUrl = "https://api.forecast.io/forecast/" + apiKey + "/"
                 + latitude  + "," + longitude;
+        if (isNetworkAvailable()) {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(forecastUrl)
+                    .build();
 
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(forecastUrl)
-                .build();
+            Call call = client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
 
-        Call call =  client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    Log.v(TAG, response.body().string());
-                    if (response.isSuccessful()) {
-                    } else {
-                        alertUserAboutError();
-                    }
-                } catch (IOException e) {
-                    Log.e(TAG, "Exception caught: ", e);
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        Log.v(TAG, response.body().string());
+                        if (response.isSuccessful()) {
+                        } else {
+                            alertUserAboutError();
+                        }
+                    } catch (IOException e) {
+                        Log.e(TAG, "Exception caught: ", e);
+                    }
+                }
+            });
+        }
         Log.d(TAG, "Main UI code is running");
     }
+
+    private boolean isNetworkAvailable() {
+        return false;
+    }
+
     private void alertUserAboutError() {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_dialog");

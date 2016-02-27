@@ -29,19 +29,18 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    @Bind(R.id.timeLabel)           TextView mTimeLabel;
+    @Bind(R.id.temperatureLabel)    TextView mTemperatureLabel;
+    @Bind(R.id.humidityValue)       TextView mHumidityValue;
+    @Bind(R.id.humidityLabel)       TextView mHumidityLabel;
+    @Bind(R.id.precipValue)         TextView mPrecipValue;
+    @Bind(R.id.precipLabel)         TextView mPrecipLabel;
+    @Bind(R.id.summaryLabel)        TextView mSummaryLabel;
+    @Bind(R.id.iconImageView)       ImageView mIconImageView;
+    @Bind(R.id.refreshImageView)    ImageView mRefreshImageView;
+    @Bind(R.id.progressBar)         ProgressBar mProgressBar;
+
     private CurrentWeather mCurrentWeather;
-
-    @Bind(R.id.timeLabel) TextView mTimeLabel;
-    @Bind(R.id.temperatureLabel) TextView mTemperatureLabel;
-    @Bind(R.id.humidityValue) TextView mHumidityValue;
-    @Bind(R.id.humidityLabel) TextView mHumidityLabel;
-    @Bind(R.id.precipValue) TextView mPrecipValue;
-    @Bind(R.id.precipLabel) TextView mPrecipLabel;
-    @Bind(R.id.summaryLabel) TextView mSummaryLabel;
-    @Bind(R.id.iconImageView) ImageView mIconImageView;
-    @Bind(R.id.refreshImageView) ImageView mRefreshImageView;
-    @Bind(R.id.progressBar) ProgressBar mProgressBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         mProgressBar.setVisibility(View.INVISIBLE);
 
-        final double latitude =  37.8267;
+        final double latitude = 37.8267;
         final double longitude = -122.423;
 
         mRefreshImageView.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void getForecast(double latitude, double longitude) {
         String apiKey = "c0d6b355edd1c82fdc625e9b2392ee21";
         String forecastUrl = "https://api.forecast.io/forecast/" + apiKey + "/"
-                + latitude  + "," + longitude;
+                + latitude + "," + longitude;
         if (isNetworkAvailable()) {
             toggleRefresh();
             OkHttpClient client = new OkHttpClient();
@@ -89,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     alertUserAboutError();
                 }
+
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     runOnUiThread(new Runnable() {
@@ -143,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         mSummaryLabel.setText(mCurrentWeather.getSummary());
         Drawable drawable = getResources().getDrawable(mCurrentWeather.getIconId());
         mIconImageView.setImageDrawable(drawable);
-
     }
 
     private CurrentWeather getCurrentDetails(String jsonData) throws JSONException {

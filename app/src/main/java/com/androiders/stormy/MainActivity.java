@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.precipLabel) TextView mPrecipLabel;
     @Bind(R.id.summaryLabel) TextView mSummaryLabel;
     @Bind(R.id.iconImageView) ImageView mIconImageView;
+    @Bind(R.id.refreshImageView) ImageView mRefreshImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        mRefreshImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getForecast();
+            }
+        });
 
+        getForecast();
+        Log.d(TAG, "Main UI code is running");
+    }
+
+    private void getForecast() {
         String apiKey = "c0d6b355edd1c82fdc625e9b2392ee21";
         double latitude =  37.8267;
         double longitude = -122.423;
@@ -92,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, R.string.network_unavailable_message,
                     Toast.LENGTH_LONG).show();
         }
-        Log.d(TAG, "Main UI code is running");
     }
 
     private void updateDisplay() {

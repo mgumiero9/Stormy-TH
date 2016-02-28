@@ -1,9 +1,9 @@
-package com.androiders.stormy;
+package com.androiders.stormy.weather;
 
 /**
  * Created by mgumiero9 on 27/02/16.
  */
-public class Hour {
+public class Day {
 
     private long mTime;
     private String mSummary;

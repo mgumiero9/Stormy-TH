@@ -1,4 +1,6 @@
-package com.androiders.stormy;
+package com.androiders.stormy.weather;
+
+import com.androiders.stormy.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +9,7 @@ import java.util.TimeZone;
 /**
  * Created by mgumiero9 on 24/02/16.
  */
-public class CurrentWeather {
+public class Current {
     private String mIcon;
     private long mTime;
     private double mTemperature;

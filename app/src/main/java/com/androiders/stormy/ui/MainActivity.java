@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
             day.setIcon(jsonDay.getString("icon"));
             day.setTime(jsonDay.getLong("time"));
-            day.setTemperature(jsonDay.getDouble("temperature"));
+            day.setTemperature(jsonDay.getDouble("temperatureMax"));
             day.setSummary(jsonDay.getString("summary"));
             day.setTimezone(timezone);
 

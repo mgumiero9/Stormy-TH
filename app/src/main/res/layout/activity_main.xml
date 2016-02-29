@@ -170,6 +170,7 @@
             android:id="@+id/dailyButton"
             android:layout_weight="1"
             android:background="#40FFFFFF"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff"
+            android:layout_marginLeft="2dp"/>
     </LinearLayout>
 </RelativeLayout>

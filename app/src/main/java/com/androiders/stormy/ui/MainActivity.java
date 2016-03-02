@@ -160,12 +160,12 @@ public class MainActivity extends AppCompatActivity {
         Forecast forecast = new Forecast();
         forecast.setCurrent(getCurrentDetails(jsonData));
         forecast.setHourlyForecast(getHourlyForecast(jsonData));
-        forecast.setDaylyForecast(getDaylyForecast(jsonData));
+        forecast.setDaylyForecast(getDailyForecast(jsonData));
 
         return forecast;
     }
 
-    private Day[] getDaylyForecast(String jsonData) throws JSONException {
+    private Day[] getDailyForecast(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
         String timezone = forecast.getString("timezone");
         JSONObject daily = forecast.getJSONObject("daily");

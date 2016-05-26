@@ -100,6 +100,8 @@ public class Day implements Parcelable {
         mTemperatureMax = in.readDouble();
     }
 
+    public Day() { }
+
     public static final Creator<Day> CREATOR = new Creator<Day>() {
         @Override
         public Day createFromParcel(Parcel source) {

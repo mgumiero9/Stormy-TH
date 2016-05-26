@@ -2,6 +2,7 @@ package com.androiders.stormy.ui;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -30,7 +31,7 @@ public class DailyForecastActivity extends ListActivity {
         setListAdapter(adapter);*/
 
         Intent intent = getIntent();
-        mDays = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
+        Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
 
         DayAdapter adapter = new DayAdapter(this,  mDays);
     }

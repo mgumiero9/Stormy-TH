@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androiders.stormy.MyUtils.FahrenheitToCelsius;
 import com.androiders.stormy.R;
 import com.androiders.stormy.weather.Day;
 

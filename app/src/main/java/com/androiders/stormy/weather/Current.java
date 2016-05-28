@@ -1,5 +1,6 @@
 package com.androiders.stormy.weather;
 
+import com.androiders.stormy.MyUtils.FahrenheitToCelsius;
 import com.androiders.stormy.R;
 
 import java.text.SimpleDateFormat;
@@ -60,7 +61,7 @@ public class Current {
     }
 
     public void setTemperature(double temperature) {
-        mTemperature = temperature;
+        mTemperature = FahrenheitToCelsius.fahrenheitToCelsius(temperature);
     }
 
     public double getHumidity() {

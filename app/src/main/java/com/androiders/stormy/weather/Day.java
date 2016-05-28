@@ -3,6 +3,8 @@ package com.androiders.stormy.weather;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.androiders.stormy.MyUtils.FahrenheitToCelsius;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -66,7 +68,8 @@ public class Day implements Parcelable {
     }
 
     public void setTemperatureMax(double temperatureMax) {
-        mTemperatureMax = temperatureMax;
+
+        mTemperatureMax = FahrenheitToCelsius.fahrenheitToCelsius(temperatureMax);
     }
 
     public int getIconId() {

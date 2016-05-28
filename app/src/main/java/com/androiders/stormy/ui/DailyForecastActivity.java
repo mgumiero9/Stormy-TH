@@ -11,6 +11,9 @@ import com.androiders.stormy.R;
 import com.androiders.stormy.adapters.DayAdapter;
 import com.androiders.stormy.weather.Day;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class DailyForecastActivity extends ListActivity {
 
     private Day[] mDays;
@@ -32,7 +35,9 @@ public class DailyForecastActivity extends ListActivity {
 
         Intent intent = getIntent();
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
+        mDays = Arrays.copyOf(parcelables, parcelables.length, Day[].class);
 
         DayAdapter adapter = new DayAdapter(this,  mDays);
+        setListAdapter(adapter);
     }
 }

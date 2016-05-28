@@ -62,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
 
         mProgressBar.setVisibility(View.INVISIBLE);
 
+        /*// Alcatraz
+        final double latitude = 37.8267;
+        final double longitude = -122.423;*/
+
+        // Ivorá, RS
         final double latitude = -29.52;
         final double longitude = -53.58;
 
@@ -182,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
             day.setIcon(jsonDay.getString("icon"));
             day.setTime(jsonDay.getLong("time"));
-            day.setTemperature(jsonDay.getDouble("temperatureMax"));
+            day.setTemperatureMax(jsonDay.getDouble("temperatureMax"));
             day.setSummary(jsonDay.getString("summary"));
             day.setTimezone(timezone);
 

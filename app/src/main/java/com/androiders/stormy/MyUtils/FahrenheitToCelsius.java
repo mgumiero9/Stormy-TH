@@ -15,6 +15,7 @@ public class FahrenheitToCelsius {
     public FahrenheitToCelsius() {
     }
 
+    @org.jetbrains.annotations.Contract(pure = true)
     public static double fahrenheitToCelsius(double fahrenheit) {
 
         double celsius = (fahrenheit - 32) * 5/9;

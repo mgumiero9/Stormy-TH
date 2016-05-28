@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
+    public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
 
     @Bind(R.id.timeLabel)           TextView mTimeLabel;
     @Bind(R.id.temperatureLabel)    TextView mTemperatureLabel;
@@ -217,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
             hours[i] = hour;
          }
         return hours;
-    }    
+    }
 
     private Current getCurrentDetails(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
@@ -259,6 +260,13 @@ public class MainActivity extends AppCompatActivity {
     public void startDailyActivity(View view) {
         Intent intent = new Intent(this, DailyForecastActivity.class);
         intent.putExtra(DAILY_FORECAST, mForecast.getDaylyForecast());
+        startActivity(intent);
+    }
+
+    @OnClick (R.id.houlyButton)
+    public void startHourlyActivity(View view) {
+        Intent intent = new Intent(this, HourlyForecastActivity.class);
+        intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
         startActivity(intent);
     }
 

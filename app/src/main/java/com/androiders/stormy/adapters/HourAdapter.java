@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androiders.stormy.MyUtils.FahrenheitToCelsius;
 import com.androiders.stormy.R;
 import com.androiders.stormy.weather.Hour;
 
@@ -59,7 +60,7 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
         public void bindHour(Hour hour) {
             mTimeLabel.setText(hour.getHour());
             mSummaryLabel.setText(hour.getSummary());
-            mTemperatureLabel.setText(hour.getTemperature() + "");
+            mTemperatureLabel.setText(Math.round(FahrenheitToCelsius.fahrenheitToCelsius(hour.getTemperature())) + "");
             mIconImageView.setImageResource(hour.getIconId());
 
         }

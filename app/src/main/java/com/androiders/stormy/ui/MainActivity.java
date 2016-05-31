@@ -67,9 +67,13 @@ public class MainActivity extends AppCompatActivity {
         final double latitude = 37.8267;
         final double longitude = -122.423;*/
 
-        // Ivorá, RS
+        /*// Ivorá, RS
         final double latitude = -29.52;
-        final double longitude = -53.58;
+        final double longitude = -53.58;*/
+
+        // Faxinal do Soturno, RS
+        final double latitude = -29.57;
+        final double longitude = -53.44;
 
         mRefreshImageView.setOnClickListener(new View.OnClickListener() {
             @Override

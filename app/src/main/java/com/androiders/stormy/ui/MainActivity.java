@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         Forecast forecast = new Forecast();
         forecast.setCurrent(getCurrentDetails(jsonData));
         forecast.setHourlyForecast(getHourlyForecast(jsonData));
-        forecast.setDaylyForecast(getDailyForecast(jsonData));
+        forecast.setDailyForecast(getDailyForecast(jsonData));
 
         return forecast;
     }
@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick (R.id.dailyButton)
     public void startDailyActivity(View view) {
         Intent intent = new Intent(this, DailyForecastActivity.class);
-        intent.putExtra(DAILY_FORECAST, mForecast.getDaylyForecast());
+        intent.putExtra(DAILY_FORECAST, mForecast.getDailyForecast());
         startActivity(intent);
     }
 

@@ -50,17 +50,17 @@ public class DailyForecastActivity extends Activity {
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
         mDays = Arrays.copyOf(parcelables, parcelables.length, Day[].class);
 
-        DayAdapter adapter = new DayAdapter(this,  mDays);
+        DayAdapter adapter = new DayAdapter(this, mDays);
         mListView.setAdapter(adapter);
         mListView.setEmptyView(mEmptyTextView);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String dayOftheWeek = mDays[position].getDayOfTheWeek();
+                String dayOfTheWeek = mDays[position].getDayOfTheWeek();
                 String conditions = mDays[position].getSummary();
                 String highTemp = mDays[position].getTemperatureMax() + "";
                 String message = String.format("On %s the high will be %s and it will be %s",
-                        dayOftheWeek,
+                        dayOfTheWeek,
                         highTemp,
                         conditions);
 

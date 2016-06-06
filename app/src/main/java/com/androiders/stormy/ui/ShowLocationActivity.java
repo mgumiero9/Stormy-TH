@@ -1,9 +1,7 @@
 package com.androiders.stormy.ui;
-
 /**
  * Created by mgumiero9 on 06/06/16.
  */
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -12,12 +10,10 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.androiders.stormy.R;
 
 public class ShowLocationActivity extends Activity implements LocationListener {
@@ -25,9 +21,6 @@ public class ShowLocationActivity extends Activity implements LocationListener {
     private TextView longitudeField;
     private LocationManager locationManager;
     private String provider;
-
-
-    /** Called when the activity is first created. */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,15 +38,10 @@ public class ShowLocationActivity extends Activity implements LocationListener {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
+
         Location location = locationManager.getLastKnownLocation(provider);
 
         // Initialize the location fields
@@ -72,15 +60,10 @@ public class ShowLocationActivity extends Activity implements LocationListener {
         super.onResume();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
+
         locationManager.requestLocationUpdates(provider, 400, 1, this);
     }
 
@@ -90,22 +73,17 @@ public class ShowLocationActivity extends Activity implements LocationListener {
         super.onPause();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
+
         locationManager.removeUpdates(this);
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        int lat = (int) (location.getLatitude());
-        int lng = (int) (location.getLongitude());
+        double lat = location.getLatitude();
+        double lng = location.getLongitude();
         latitudeField.setText(String.valueOf(lat));
         longitudeField.setText(String.valueOf(lng));
     }

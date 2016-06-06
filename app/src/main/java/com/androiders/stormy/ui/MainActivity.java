@@ -3,8 +3,10 @@ package com.androiders.stormy.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,6 +76,19 @@ public class MainActivity extends AppCompatActivity {
         /*// Faxinal do Soturno, RS
         final double latitude = -29.57;
         final double longitude = -53.44;*/
+
+        // Acquire a reference to the system Location Manager
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        boolean enabled = service
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        // check if enabled and if not send user to the GSP settings
+        // Better solution would be to display a dialog and suggesting to
+        // go to the settings
+        if (!enabled) {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
+        }
 
         mRefreshImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,6 +286,12 @@ public class MainActivity extends AppCompatActivity {
     public void startHourlyActivity(View view) {
         Intent intent = new Intent(this, HourlyForecastActivity.class);
         intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
+        startActivity(intent);
+    }
+
+    @OnClick (R.id.temperatureLabel)
+    public void startLocationActivity(View view) {
+        Intent intent = new Intent(this, ShowLocationActivity.class);
         startActivity(intent);
     }
 
